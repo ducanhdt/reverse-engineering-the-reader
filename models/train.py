@@ -85,7 +85,9 @@ def train(
     train_losses = []
     train_kls = []
     while step < total_steps_mutliplier * eval_steps:
-        for b_index, batch in enumerate(tqdm(train_data_loader)):
+        # for b_index, batch in enumerate(tqdm(train_data_loader)):
+        for b_index, batch in enumerate(tqdm(train_data_loader, dynamic_ncols=True, leave=True)):
+
             model.train()
             if model_ref:
                 model_ref.train()
