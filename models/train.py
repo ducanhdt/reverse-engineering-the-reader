@@ -86,8 +86,7 @@ def train(
     train_kls = []
     b_index = 0
     while step < total_steps_mutliplier * eval_steps:
-        for batch in tqdm(train_data_loader, desc="Training"):
-            b_index += 1
+        for b_index,batch in enumerate(tqdm(train_data_loader, desc="Training")):
             model.train()
             if model_ref:
                 model_ref.train()
@@ -229,7 +228,7 @@ def validate(
     all_kl = []
     all_kl_weight = []
     with torch.no_grad():
-        for batch in tqdm(eval_data_loader,desc="Evaluating"):
+        for _, batch in enumerate(tqdm(eval_data_loader,desc="Evaluating")):
             batch = {k: v.to(device) for k, v in batch.items()}
             loss, coefficients_all, ppl, ce_loss, sentence_metrics, kl = loss_fn(
                 model,
