@@ -83,14 +83,7 @@ def compute_loss(
     is_eval: bool = False,
     mean_rt_train: float = None,
     std_rt_train: float = None,
-) -> List[
-    torch.Tensor,
-    Dict[str, torch.Tensor],
-    torch.Tensor,
-    torch.Tensor,
-    pd.DataFrame,
-    torch.Tensor,
-]:
+):
     """
     Compute loss for batch
 
