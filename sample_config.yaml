@@ -22,7 +22,7 @@ training_kwargs:
 
   learning_rate: 0.000015
   lr_scheduler_type: "cosine"
-  max_length: 150 # Used for padding
+  max_length: 200 # Used for padding
   optim: "adamw_torch"
   output_dir: "output"
   train_batch_size: 1
@@ -41,10 +41,14 @@ training_kwargs:
 
   # Eval dataset
   eval_dataset: "dundee" 
-  eval_data_path: "data/datasets/dundee_test.csv" 
+  eval_data_path: "data/data_splits/original_data/oasstetc_complete.csv" 
+  data_path: "data/data_splits/original_data/oasstetc_complete.csv"
+  # eval_data_path: "data/data_splits/original_data/oasstetc_complete_processed.csv" 
+  # data_path: "data/data_splits/original_data/oasstetc_complete_processed.csv"
+  # eval_data_path: "data/datasets/dundee_test.csv" 
+  # data_path: "data/datasets/dundee_train.csv"
   eval_split_size: 0.3
   # Train dataset 
   preference_dataset: "dundee"
-  data_path: "data/datasets/dundee_train.csv"
-  train_dataset_target: "first_pass_dur"
-  eval_dataset_target: "first_pass_dur"     # total_fix_dur, first_fix_dur
+  train_dataset_target: "first_fix_duration"
+  eval_dataset_target: "first_fix_duration"     # total_fix_dur, first_fix_dur

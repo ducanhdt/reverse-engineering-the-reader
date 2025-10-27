@@ -5,7 +5,7 @@ import pandas as pd
 import numpy as np
 from wordfreq import word_frequency
 from transformers import PreTrainedTokenizer
-
+import traceback
 
 def tokenize_texts(
     texts: List[List[str]],
@@ -73,7 +73,7 @@ def tokenize_texts(
                 word = words[words_index]
                 if words_index > 0:
                     word = " " + word
-                if word == offset_words[offset_index]:
+                if word.strip() == offset_words[offset_index].strip():
                     corrected_word_ids.append(words_index)
                     corrected_words.append(word.lstrip())
                     words_index += 1
@@ -83,8 +83,16 @@ def tokenize_texts(
                     merged_word = offset_words[offset_index]
                     merged_word_id = [words_index]
                     offset_index += 1
-                    while target_word != merged_word:
-                        merged_word += offset_words[offset_index]
+                    while target_word.strip() != merged_word.strip():
+                        # check if overlap offset with previous offset word
+                        if offset_mapping[offset_index][0] >= offset_mapping[offset_index - 1][1]:
+                            merged_word += offset_words[offset_index]
+                        else:
+                            pass
+                        merged_word_id.append(words_index)
+                        offset_index += 1
+                    # check if overlap with previous offset word
+                    if offset_index > 0 and 0 < offset_mapping[offset_index][0] < offset_mapping[offset_index-1][1]:
                         merged_word_id.append(words_index)
                         offset_index += 1
                     corrected_words.append(merged_word.lstrip())
@@ -117,6 +125,9 @@ def tokenize_texts(
         except Exception as e:
             print("Encountered an error while correcting word IDs.: ", e)
             print("Skipping sentence: ", words)
+            print(len(offset_words), "offset words: ", offset_words)
+            # add traceback for debugging
+            traceback.print_exc()
             continue
 
         corrected_word_ids = np.pad(
