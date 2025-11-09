@@ -1,4 +1,4 @@
-experiment_name: "complete_small_ffd_config"
+experiment_name: "complete_small_ffd_50_kl_config"
 
 use_wandb: False
 wandb_project_name: "main_full_pass"
