@@ -1,4 +1,4 @@
-experiment_name: "main_full_pass_model-gpt2Small_train-dundee_eval-dundee_target-fpd"
+experiment_name: "all_small_ffd_config"
 
 use_wandb: False
 wandb_project_name: "main_full_pass"
@@ -22,7 +22,7 @@ training_kwargs:
 
   learning_rate: 0.000015
   lr_scheduler_type: "cosine"
-  max_length: 150 # Used for padding
+  max_length: 200 # Used for padding
   optim: "adamw_torch"
   output_dir: "output"
   train_batch_size: 1
@@ -40,11 +40,13 @@ training_kwargs:
   save_metric: "loss" 
 
   # Eval dataset
-  eval_dataset: "dundee" 
-  eval_data_path: "data/datasets/dundee_test.csv" 
+  eval_dataset: "zuco" 
+  eval_data_path: "data/datasets/zuco_test.csv" 
+  data_path: "data/data_splits/original_data/oasstetc_all.csv"
+  # eval_data_path: "data/datasets/dundee_test.csv" 
+  # data_path: "data/datasets/dundee_train.csv"
   eval_split_size: 0.3
   # Train dataset 
   preference_dataset: "dundee"
-  data_path: "data/datasets/dundee_train.csv"
-  train_dataset_target: "first_pass_dur"
-  eval_dataset_target: "first_pass_dur"     # total_fix_dur, first_fix_dur
+  train_dataset_target: "first_fix_dur"
+  eval_dataset_target: "first_fix_dur"     # total_fix_dur, first_fix_dur
