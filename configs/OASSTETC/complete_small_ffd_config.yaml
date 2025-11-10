@@ -2,7 +2,7 @@ experiment_name: "complete_small_ffd_config"
 
 use_wandb: True
 wandb_project_name: "CCS3"
-save_scratch: True # If on cluster, whether to save ckpt on scratch space
+save_scratch: False # If on cluster, whether to save ckpt on scratch space
 
 # Global seed
 seed: 8
