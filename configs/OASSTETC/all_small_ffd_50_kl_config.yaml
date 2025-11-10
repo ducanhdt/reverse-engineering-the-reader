@@ -1,4 +1,4 @@
-experiment_name: "all_small_ffd_50_kl_config"
+experiment_name: "all_small_ffd_100_kl_config"
 
 use_wandb: True
 wandb_project_name: "CCS3"
@@ -17,7 +17,7 @@ training_kwargs:
   train_w_random_rts: False  
   loss: "delta_llh_wt"
   loss_type: "mse"
-  kl_weight: 50
+  kl_weight: 100
   kl_variant: "full"
 
   learning_rate: 0.000015
