@@ -92,7 +92,7 @@ def tokenize_texts(
                         merged_word_id.append(words_index)
                         offset_index += 1
                     # check if overlap with previous offset word
-                    if offset_index > 0 and 0 < offset_mapping[offset_index][0] < offset_mapping[offset_index-1][1]:
+                    if offset_index > 0 and offset_index<len(offset_mapping) and 0 < offset_mapping[offset_index][0] < offset_mapping[offset_index-1][1]:
                         merged_word_id.append(words_index)
                         offset_index += 1
                     corrected_words.append(merged_word.lstrip())
