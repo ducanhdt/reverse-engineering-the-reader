@@ -21,7 +21,7 @@ training_kwargs:
 
   learning_rate: 0.000015
   lr_scheduler_type: "cosine"
-  max_length: 200 # Used for padding
+  max_length: 150 # Used for padding
   optim: "adamw_torch"
   output_dir: "output"
   train_batch_size: 1
