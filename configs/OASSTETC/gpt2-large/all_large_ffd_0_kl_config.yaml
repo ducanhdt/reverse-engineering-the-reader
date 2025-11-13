@@ -1,4 +1,4 @@
-experiment_name: "all_medium_ffd_0_kl_config"
+experiment_name: "all_large_ffd_0_kl_config"
 
 use_wandb: True
 wandb_project_name: "CCS3"
