@@ -229,13 +229,26 @@ def compute_loss(
     unpadded_reading_times = masked_reading_times.squeeze(0).detach().cpu().numpy()
     unpadded_word_lengths = masked_lengths.squeeze(0).cpu().numpy()
     unpadded_word_frequencies = masked_frequencies.squeeze(0).cpu().numpy()
+    try:
+        sentence_metrics = pd.DataFrame(
+            {
+                "surprisal": unpadded_surprisal,
+                "reading_times": unpadded_reading_times,
+                "word_length": unpadded_word_lengths,
+                "word_frequency": unpadded_word_frequencies,
+            }
+        )
+    except Exception as e:
+        print(f"Error creating sentence_metrics DataFrame: {e}")
+        print(batch)
+        print(unpadded_surprisal, unpadded_reading_times, unpadded_word_lengths, unpadded_word_frequencies)
+        sentence_metrics = pd.DataFrame(
+            {
+                "surprisal": [unpadded_surprisal],
+                "reading_times": [unpadded_reading_times],
+                "word_length": [unpadded_word_lengths],
+                "word_frequency": [unpadded_word_frequencies],
+            }
+        )
 
-    sentence_metrics = pd.DataFrame(
-        {
-            "surprisal": unpadded_surprisal,
-            "reading_times": unpadded_reading_times,
-            "word_length": unpadded_word_lengths,
-            "word_frequency": unpadded_word_frequencies,
-        }
-    )
     return loss, coefficients_all, ppl_surprisal, ce_loss, sentence_metrics, kl

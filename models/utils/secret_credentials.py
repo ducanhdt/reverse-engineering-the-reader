@@ -1,0 +1,3 @@
+WANDB_API_KEY="5dcf43d42b9e34786a216356f212ffb5fd2656c1"
+WANDB_LOG_MODEL="CCS3"
+username = "ducanhhbtt"
