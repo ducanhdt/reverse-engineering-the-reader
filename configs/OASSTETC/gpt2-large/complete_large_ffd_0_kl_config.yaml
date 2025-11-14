@@ -1,4 +1,4 @@
-experiment_name: "all_large_ffd_0_kl_config"
+experiment_name: "complete_large_ffd_0_kl_config"
 
 use_wandb: True
 wandb_project_name: "CCS3"
@@ -8,7 +8,7 @@ save_scratch: False # If on cluster, whether to save ckpt on scratch space
 seed: 42
 
 # Method
-model: "gpt2-medium" # model name
+model: "gpt2-large" # model name
 method: "deltallh_wt"
 
 # Training settings
@@ -43,6 +43,6 @@ training_kwargs:
   eval_split_size: 0
   # Train dataset 
   preference_dataset: "dundee"
-  data_path:  "data/data_splits/original_data/oasstetc_all.csv"
+  data_path:  "data/data_splits/original_data/oasstetc_complete.csv"
   train_dataset_target: "first_fix_dur"
   eval_dataset_target: "first_fix_dur"     # total_fix_dur, first_fix_dur
