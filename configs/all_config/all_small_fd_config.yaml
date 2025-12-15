@@ -1,4 +1,4 @@
-experiment_name: "all_small_ffd_config"
+experiment_name: "all_small_fd_config"
 
 use_wandb: True
 wandb_project_name: "CCS3-gpt2"
